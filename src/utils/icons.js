@@ -3,7 +3,7 @@ import {FiDisc} from 'react-icons/fi'
 import {CgDisc} from 'react-icons/cg'
 import {AiOutlineArrowLeft ,AiOutlineArrowRight,AiFillHeart,AiOutlineHeart} from 'react-icons/ai'
 import {HiArrowNarrowLeft,HiArrowNarrowRight} from 'react-icons/hi'
-import {BsSearch,BsThreeDots,BsFillPlayFill,BsPauseFill} from 'react-icons/bs'
+import {BsSearch,BsThreeDots,BsFillPlayFill,BsPauseFill,BsMusicNoteBeamed,BsDot} from 'react-icons/bs'
 import {CiRepeat,CiShuffle} from "react-icons/ci"
 
 
@@ -25,7 +25,9 @@ const icons = {
   MdSkipPrevious,
   CiShuffle,
   BsFillPlayFill,
-  BsPauseFill
+  BsPauseFill,
+  BsMusicNoteBeamed,
+  BsDot
 }
 
 export default icons

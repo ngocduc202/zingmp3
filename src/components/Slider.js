@@ -70,7 +70,7 @@ const Slider = () => {
           {
             max+=1
           }
-          console.log(list)
+
       },3000)
       return ()=>
       {

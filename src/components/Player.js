@@ -1,20 +1,24 @@
-import React , {useEffect} from 'react'
+import React , {useEffect,useRef} from 'react'
 import { useSelector } from 'react-redux'
 import * as apis from "../apis"
 import { useState } from 'react'
 import icons from "../utils/icons"
+import { useDispatch} from 'react-redux'
+import * as actions from "../store/action"
 
 
 const {AiFillHeart ,AiOutlineHeart,BsThreeDots,MdSkipNext,MdSkipPrevious,CiRepeat,CiShuffle,BsFillPlayFill,BsPauseFill} = icons
 
 const Player = () => {
-  const audioEl = new Audio()
+  const audioEl = useRef(new Audio())
   const {curSongId,isPlaying} = useSelector(state => state.music)
   const [source , setSource] = useState(null)
   const  [songInfo, setSonginfo] = useState(null)
+  const dispath =useDispatch()
 
 
-  console.log(audioEl);
+
+  // console.log(audioEl);
 
   useEffect(() =>{
     const fetchDetailSong = async () =>{
@@ -30,17 +34,31 @@ const Player = () => {
       {
         setSource(res2.data.data['128'])
       }
-
     }
+
     fetchDetailSong()
   }, [curSongId])
 
-  useEffect(() =>{
+console.log(source)
 
-  }, [curSongId])
+  useEffect(() =>{
+    audioEl.current.pause()
+    audioEl.current.src = source
+    audioEl.current.load()
+    if(isPlaying) audioEl.current.play()
+
+  }, [curSongId ,source])
 
   const handleTogglePlayMusic = () =>{
-
+    if(isPlaying)
+    {
+      audioEl.current.pause()
+      dispath(actions.play(false))
+    }
+    else{
+      audioEl.current.play()
+      dispath(actions.play(true))
+    }
   }
 
 

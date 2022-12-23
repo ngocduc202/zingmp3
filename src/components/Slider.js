@@ -3,13 +3,16 @@ import { useSelector , useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getArrSlider } from '../utils/fn'
 import * as actions from "../store/action"
+import { useNavigate } from 'react-router-dom'
 
 
 const Slider = () => {
 
   const {banner} = useSelector(state => state.app)
   const dispath = useDispatch()
+  const navigate = useNavigate()
 
+  //animation banner
   useEffect(() => {
     const sliderEls = document.getElementsByClassName("slider-item")
       let min = 0
@@ -81,6 +84,11 @@ const Slider = () => {
     {
         dispath(actions.setCurSongId(item.encodeId))
         dispath(actions.play(true))
+    }
+    else if(item?.type === 4)
+    {
+      const albumPath = item?.link?.split('.')[0]
+      navigate(albumPath)
     }
   }
 

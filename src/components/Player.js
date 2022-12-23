@@ -19,12 +19,16 @@ const Player = () => {
   useEffect(() =>{
     const fetchDetailSong = async () =>{
       const [res1 , res2] = await Promise.all([
-        apis.getDetaiSong(curSongId),
-        apis.getSong(curSongId)
+        apis.apiGetDetailSong(curSongId),
+        apis.apiGetSong(curSongId)
       ])
       if(res1.data.err === 0)
       {
         setSonginfo(res1.data.data)
+      }
+      if(res2.data.err === 0)
+      {
+        setSource(res2.data.data['128'])
       }
 
     }

@@ -5,17 +5,19 @@ import { useState } from 'react'
 import icons from "../utils/icons"
 import { useDispatch} from 'react-redux'
 import * as actions from "../store/action"
+import moment from 'moment/moment'
 
 
 const {AiFillHeart ,AiOutlineHeart,BsThreeDots,MdSkipNext,MdSkipPrevious,CiRepeat,CiShuffle,BsFillPlayFill,BsPauseFill} = icons
-
+var intervalId
 const Player = () => {
-  const audioEl = useRef(new Audio())
+
   const {curSongId,isPlaying} = useSelector(state => state.music)
-  const [source , setSource] = useState(null)
   const  [songInfo, setSonginfo] = useState(null)
   const dispath =useDispatch()
-
+  const [curSeconds, setCurSeconds] = useState(0)
+  const [audio, setAudio] = useState(new Audio())
+  const thumRef = useRef()
 
 
   // console.log(audioEl);
@@ -29,34 +31,51 @@ const Player = () => {
       if(res1.data.err === 0)
       {
         setSonginfo(res1.data.data)
+
       }
       if(res2.data.err === 0)
       {
-        setSource(res2.data.data['128'])
+        audio.pause()
+        setAudio( new Audio(res2.data.data['128']))
       }
     }
 
     fetchDetailSong()
   }, [curSongId])
 
-console.log(source)
 
   useEffect(() =>{
-    audioEl.current.pause()
-    audioEl.current.src = source
-    audioEl.current.load()
-    if(isPlaying) audioEl.current.play()
+    if(isPlaying)
+    {
+      intervalId =setInterval(() => {
+        let percent = Math.round(audio.currentTime * 10000 / songInfo?.duration) / 100
+        thumRef.current.style.cssText = `right : ${100 - percent}%`
+        setCurSeconds(Math.round(audio.currentTime))
+      }, 200);
+    }
+    else
+    {
+      intervalId && clearInterval(intervalId)
+    }
 
-  }, [curSongId ,source])
+  }, [isPlaying])
+
+// console.log(audio)
+
+  useEffect(() =>{
+    audio.load()
+    if(isPlaying) audio.play()
+
+  }, [audio])
 
   const handleTogglePlayMusic = () =>{
     if(isPlaying)
     {
-      audioEl.current.pause()
+      audio.pause()
       dispath(actions.play(false))
     }
     else{
-      audioEl.current.play()
+      audio.play()
       dispath(actions.play(true))
     }
   }
@@ -93,8 +112,14 @@ console.log(source)
                   <span className='cursor-pointer'> <MdSkipNext size={24} /></span>
                   <span className='cursor-pointer' title='Bật phát lại tất cả'> <CiRepeat size={24} /></span>
               </div>
-              <div className=''>
-                progress
+              <div className='w-full flex justify-center gap-3 items-center text-xs'>
+                  <span className=''>{moment.utc(curSeconds * 1000).format("mm:ss")}</span>
+                <div className='w-3/5 h-[3px] rounded-l-full rounded-r-full relative bg-[rgba(0,0,0,0.1)] '>
+                    <div ref={thumRef} className='absolute top-0 left-0  h-[3px] bg-[#0e8080] rounded-l-full rounded-r-full'>
+
+                    </div>
+                </div>
+                <span>{moment.utc(songInfo?.duration * 1000).format("mm:ss")}</span>
               </div>
           </div>
           <div className='w-[30%] flex-auto'>

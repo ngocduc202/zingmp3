@@ -84,13 +84,19 @@ const Slider = () => {
     {
         dispath(actions.setCurSongId(item.encodeId))
         dispath(actions.play(true))
+        dispath(actions.setPlaylist(null))
     }
     else if(item?.type === 4)
     {
       const albumPath = item?.link?.split('.')[0]
       navigate(albumPath)
     }
+    else
+    {
+      dispath(actions.setPlaylist(null))
+    }
   }
+
 
   return (
     <div className='w-full overflow-hidden px-[59px]'>

@@ -4,12 +4,15 @@ import * as apis from '../../apis'
 import moment from 'moment/moment'
 import {Lists} from "../../components"
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import { useDispatch } from 'react-redux'
+import * as actions from "../../store/action"
 
 
 const Album = () => {
 
   const {  pid} =useParams()
   const [playListData, setplayListData] = useState({})
+  const dispath = useDispatch()
 
 
   useEffect(() =>{
@@ -18,6 +21,7 @@ const Album = () => {
       if(response?.data.err ===0)
       {
           setplayListData(response.data?.data)
+          dispath(actions.setPlaylist(response?.data?.data?.song?.items))
           // console.log(response)
       }
 
@@ -54,7 +58,7 @@ const Album = () => {
                     <span>{playListData?.sortDescription}</span>
               </span>
 
-                <Lists song={playListData?.song?.items} totalDuration ={playListData?.song?.totalDuration}/>
+                <Lists  totalDuration ={playListData?.song?.totalDuration}/>
 
           </div>
     </Scrollbars>

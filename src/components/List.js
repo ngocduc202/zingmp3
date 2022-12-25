@@ -18,6 +18,7 @@ const List = ({songData}) => {
     onClick={() => {
       dispath(actions.setCurSongId(songData?.encodeId))
       dispath(actions.play(true))
+      dispath(actions.playAlbum(true))
     } }
     >
         <div className='flex items-center gap-3 flex-1'>
@@ -30,7 +31,7 @@ const List = ({songData}) => {
                   </span>
         </div>
         <div className='flex-1 flex items-center justify-center'>
-          { songData?.album?.title?.length >30 ? `${  songData?.album?.title?.slice(0 ,25)}...` : songData?.album?.title}
+          { songData?.album?.title?.length >30 ? `${  songData?.album?.title?.slice(0 ,30)}...` : songData?.album?.title}
 
         </div>
         <div className='flex-1 flex justify-end'>

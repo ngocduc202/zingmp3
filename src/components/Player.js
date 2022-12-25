@@ -17,6 +17,7 @@ const Player = () => {
   const dispath =useDispatch()
   const [curSeconds, setCurSeconds] = useState(0)
   const [isShuffle, setIsShuffle] = useState(false)
+  const [isRepeat, setIsRepeat] = useState(false)
   const [audio, setAudio] = useState(new Audio())
   const thumRef = useRef()
   const trackRef = useRef()
@@ -57,7 +58,7 @@ const Player = () => {
     intervalId && clearInterval(intervalId)
     audio.pause()
     audio.load()
-    if(isPlaying){
+    if(isPlaying && thumRef.current){
       audio.play()
       intervalId =setInterval(() => {
         let percent = Math.round(audio.currentTime * 10000 / songInfo?.duration) / 100
@@ -68,6 +69,31 @@ const Player = () => {
 
   }, [audio])
 
+  useEffect(()  =>{
+    const handleEnded = () =>{
+
+      if(isShuffle)
+      {
+        handleShuffle()
+      }
+      else if(isRepeat)
+      {
+        handleNextSong()
+      }
+      else
+      {
+        audio.pause()
+        dispath(actions.play(false))
+      }
+
+    }
+    audio.addEventListener("ended" , handleEnded)
+
+    return () =>{
+      audio.removeEventListener ("ended" ,handleEnded)
+    }
+
+  }, [audio , isShuffle , isRepeat])
 
   const handleTogglePlayMusic = () =>{
     if(isPlaying)
@@ -78,6 +104,7 @@ const Player = () => {
     else{
       audio.play()
       dispath(actions.play(true))
+
     }
   }
 
@@ -119,9 +146,12 @@ const Player = () => {
     }
   }
 
-  // const  handleShuffle = () =>{
-
-  // }
+  const  handleShuffle = () =>{
+    const randomIndex = Math.round(Math.random() * songs?.length ) - 1
+    dispath(actions.setCurSongId(songs[randomIndex].encodeId))
+    dispath(actions.play(true))
+    setIsShuffle(prev => !prev)
+  }
 
   return (
     <div className='bg-main-400 px-5 h-full flex '>
@@ -144,21 +174,35 @@ const Player = () => {
           <div className='w-[40%] flex-auto flex flex-col items-center justify-center gap-2 py-2'>
               <div className='flex gap-8 justify-center items-center'>
                   <span
-                      className={`cursor-pointer ${isShuffle && "text-purple-600" }`}
+                      className={`cursor-pointer ${isShuffle ? "text-purple-600"  : "text-black"}`}
                       title='Bật phát ngẫu nhiên'
                       onClick={() => setIsShuffle(prev => !prev)}
                       >
                     <CiShuffle size={24} />
                     </span>
-                  <span onClick={handlePrevSong} className={`${!songs ? "text-gray-500 " : "cursor-pointer"}`}> <MdSkipPrevious size={24} /> </span>
+                  <span
+                  onClick={handlePrevSong}
+                  className={`${!songs ? "text-gray-500 " : "cursor-pointer"}`}>
+                  <MdSkipPrevious size={24} />
+                  </span>
                   <span
                     className='p-1 border border-gray-700 rounded-full hover:text-emerald-800 cursor-pointer'
                     onClick={handleTogglePlayMusic}
                     >
                     {isPlaying ?  <BsPauseFill size={30} /> :  <BsFillPlayFill size={30} />  }
                     </span>
-                  <span onClick={handleNextSong} className={`${!songs ? "text-gray-500 " : "cursor-pointer"}`}> <MdSkipNext size={24} /></span>
-                  <span className='cursor-pointer' title='Bật phát lại tất cả'> <CiRepeat size={24} /></span>
+                  <span
+                    onClick={handleNextSong}
+                    className={`${!songs ? "text-gray-500 " : "cursor-pointer"}`}>
+                    <MdSkipNext size={24} />
+                    </span>
+                  <span
+                    className={`cursor-pointer ${isRepeat && "text-purple-600" }`}
+                    title='Bật phát lại tất cả'
+                    onClick={() => setIsRepeat(prev => !prev)}
+                    >
+                      <CiRepeat size={24} />
+                      </span>
               </div>
               <div className='w-full flex justify-center gap-3 items-center text-xs'>
                   <span className=''>{moment.utc(curSeconds * 1000).format("mm:ss")}</span>

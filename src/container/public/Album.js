@@ -14,14 +14,15 @@ const Album = () => {
 
   const {  pid} =useParams()
   const [playListData, setplayListData] = useState({})
+  const {isPlaying } = useSelector(state => state.music)
   const dispath = useDispatch()
-  const {curSongId,isPlaying ,songs} = useSelector(state => state.music)
-
 
 
   useEffect(() =>{
     const fetchDetailPlayplist = async () =>{
+      dispath(actions.loading(true))
       const response =await apis.apiGetDetaiPlaylist(pid)
+      dispath(actions.loading(false))
       if(response?.data.err ===0)
       {
           setplayListData(response.data?.data)
@@ -36,8 +37,8 @@ const Album = () => {
 
 
   return (
-    <div className='flex gap-8 w-full h-full px-[59px]'>
-          <div className='flex-none w-1/4 border border-red-500 flex flex-col items-center gap-2'>
+    <div className='flex relative gap-8 w-full h-full px-[59px] animate-scale-up-center'>
+          <div className='flex-none w-1/4 flex flex-col items-center gap-2'>
               <div className='w-full relative overflow-hidden'>
               <img
                 src={playListData?.thumbnailM}
@@ -66,7 +67,7 @@ const Album = () => {
                     </span>
             </div>
           </div>
-        <Scrollbars style={{ width: "100%", height: "74%" }}>
+        <Scrollbars style={{ width: "100%", height: "90%" }}>
           <div className='flex-auto mb-40'>
               <span className='text-sm'>
                     <span className='text-gray-600 '>Lời tựa </span>

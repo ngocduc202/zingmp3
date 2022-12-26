@@ -2,7 +2,12 @@ import actionTypes from "../action/actionTypes";
 
 const initState ={
     banner : [],
-    friday : {}
+    friday : {},
+    newEveryday :{},
+    top100 : {},
+    xone :{},
+    newMusic : [],
+    isLoading : false
 
 }
 
@@ -12,9 +17,17 @@ const appReducer = (state = initState , action) =>{
       return {
         ...state,
         banner: action.homeData?.find(item => item.sectionId === "hSlider")?.items  || null,
-        friday : action.homeData?.find(item => item.sectionId === "hAutoTheme1")  || {}
+        friday : action.homeData?.find(item => item.sectionId === "hAutoTheme1")  || {} ,
+        newEveryday : action.homeData?.find(item => item.sectionId === "hAutoTheme2")  || {} ,
+        top100 : action.homeData?.find(item => item.sectionId === "h100")  || {} ,
+        xone : action.homeData?.find(item => item.sectionId === "hXone")  || {} ,
+        newMusic : {...action.homeData?.find(item => item.sectionId === "hAlbum"), title: "Nhạc mới"}  || {} ,
       }
-
+      case actionTypes.LOADING :
+        return {
+          ...state ,
+          isLoading : action.flag
+        }
     default:
       return state;
   }

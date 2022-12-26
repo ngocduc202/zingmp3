@@ -8,7 +8,7 @@ import * as actions from "../store/action"
 import moment from 'moment/moment'
 import { toast } from 'react-toastify'
 
-const {AiFillHeart ,AiOutlineHeart,BsThreeDots,MdSkipNext,MdSkipPrevious,CiRepeat,CiShuffle,BsFillPlayFill,BsPauseFill} = icons
+const {AiFillHeart ,AiOutlineHeart,BsThreeDots,MdSkipNext,MdSkipPrevious,CiRepeat,CiShuffle,BsFillPlayFill,BsPauseFill, TbRepeatOnce} = icons
 var intervalId
 const Player = () => {
 
@@ -17,7 +17,7 @@ const Player = () => {
   const dispath =useDispatch()
   const [curSeconds, setCurSeconds] = useState(0)
   const [isShuffle, setIsShuffle] = useState(false)
-  const [isRepeat, setIsRepeat] = useState(false)
+  const [repeatMode, setRepeatMode] = useState(0)
   const [audio, setAudio] = useState(new Audio())
   const thumRef = useRef()
   const trackRef = useRef()
@@ -76,9 +76,9 @@ const Player = () => {
       {
         handleShuffle()
       }
-      else if(isRepeat)
+      else if(repeatMode)
       {
-        handleNextSong()
+          repeatMode === 1 ? handleRepeatOne() :  handleNextSong()
       }
       else
       {
@@ -93,7 +93,7 @@ const Player = () => {
       audio.removeEventListener ("ended" ,handleEnded)
     }
 
-  }, [audio , isShuffle , isRepeat])
+  }, [audio , isShuffle , repeatMode])
 
   const handleTogglePlayMusic = () =>{
     if(isPlaying)
@@ -131,6 +131,10 @@ const Player = () => {
     }
   }
 
+  const handleRepeatOne = () =>{
+    audio.play()
+  }
+
   const handlePrevSong = () =>{
     if(songs)
     {
@@ -150,7 +154,7 @@ const Player = () => {
     const randomIndex = Math.round(Math.random() * songs?.length ) - 1
     dispath(actions.setCurSongId(songs[randomIndex].encodeId))
     dispath(actions.play(true))
-    setIsShuffle(prev => !prev)
+
   }
 
   return (
@@ -197,11 +201,11 @@ const Player = () => {
                     <MdSkipNext size={24} />
                     </span>
                   <span
-                    className={`cursor-pointer ${isRepeat && "text-purple-600" }`}
+                    className={`cursor-pointer ${repeatMode && "text-purple-600" }`}
                     title='Bật phát lại tất cả'
-                    onClick={() => setIsRepeat(prev => !prev)}
+                    onClick={() => setRepeatMode(prev =>  prev === 2 ? 0 : prev + 1)}
                     >
-                      <CiRepeat size={24} />
+                      {repeatMode === 1 ? <TbRepeatOnce size={24} /> : <CiRepeat size={24} /> }
                       </span>
               </div>
               <div className='w-full flex justify-center gap-3 items-center text-xs'>

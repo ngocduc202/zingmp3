@@ -5,6 +5,7 @@ import {AiOutlineArrowLeft ,AiOutlineArrowRight,AiFillHeart,AiOutlineHeart} from
 import {HiArrowNarrowLeft,HiArrowNarrowRight} from 'react-icons/hi'
 import {BsSearch,BsThreeDots,BsFillPlayFill,BsPauseFill,BsMusicNoteBeamed,BsDot} from 'react-icons/bs'
 import {CiRepeat,CiShuffle} from "react-icons/ci"
+import { TbRepeatOnce} from "react-icons/tb"
 
 
 const icons = {
@@ -27,7 +28,8 @@ const icons = {
   BsFillPlayFill,
   BsPauseFill,
   BsMusicNoteBeamed,
-  BsDot
+  BsDot,
+  TbRepeatOnce
 }
 
 export default icons

@@ -1,6 +1,6 @@
 import React ,{useState}from "react";
 import { Outlet } from "react-router-dom";
-import { SidebarLeft , SidebarRight,Player ,Header ,Loading} from "../../components";
+import { SidebarLeft , SidebarRight,Player ,Header ,Loading,NewRelease} from "../../components";
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useSelector } from "react-redux";
 
@@ -23,7 +23,7 @@ const Public = () =>{
             <Header />
               </div>
               <div className="flex-auto w-full">
-              <Scrollbars style={{ width: "100%", height: "100%" }}>
+              <Scrollbars autoHide style={{ width: "100%", height: "100%" }}>
                   <Outlet />
               </Scrollbars>
               </div>

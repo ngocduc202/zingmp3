@@ -7,7 +7,10 @@ const initState ={
     top100 : {},
     xone :{},
     newMusic : [],
-    isLoading : false
+    isLoading : false,
+    newRelease :{} ,
+    weekChart :[] ,
+    favorriteArtist : {}
 
 }
 
@@ -22,6 +25,9 @@ const appReducer = (state = initState , action) =>{
         top100 : action.homeData?.find(item => item.sectionId === "h100")  || {} ,
         xone : action.homeData?.find(item => item.sectionId === "hXone")  || {} ,
         newMusic : {...action.homeData?.find(item => item.sectionId === "hAlbum"), title: "Nhạc mới"}  || {} ,
+        newRelease : action.homeData?.find(item => item.sectionType === "new-release") || {} ,
+        weekChart : action.homeData?.find(item => item.sectionType === "weekChart")?.items || [] ,
+        favorriteArtist : action.homeData?.find(item => item.sectionId === "hMix") || {} ,
       }
       case actionTypes.LOADING :
         return {

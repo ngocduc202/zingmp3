@@ -6,6 +6,7 @@ const path = {
   MYMUSIC : 'mymusic',
   ALBUM__TITLE__PID : "album/:title/:pid",
   PLAYLIST__TITLE__PID : "playlist/:title/:pid",
+  WEEK__TITLE_PID : "zing-chart-tuan/:title/:pid"
 
 }
 

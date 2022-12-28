@@ -24,12 +24,12 @@ const Home = () =>{
             </Link>
           ))}
         </div>
-        <div className="px-[59px] flex gap-4">
+        {/* <div className="px-[59px] flex gap-4">
             <div className='flex items-center justify-between'>
                 <h3 className='text-[20px] font-bold'>{favorriteArtist?.title}</h3>
                 <span className='text-xs'>TẤT CẢ</span>
               </div>
-        </div>
+        </div> */}
         <div className="w-full h-[500px]"></div>
     </div>
   )

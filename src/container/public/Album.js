@@ -1,5 +1,5 @@
 import React , {useEffect,useState}from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams ,useLocation } from 'react-router-dom'
 import * as apis from '../../apis'
 import moment from 'moment/moment'
 import {Lists ,AudioLoading} from "../../components"
@@ -11,6 +11,8 @@ import icons from '../../utils/icons'
 const {BsFillPlayFill} =icons
 
 const Album = () => {
+
+  const location = useLocation()
 
   const {  pid} =useParams()
   const [playListData, setplayListData] = useState({})
@@ -35,6 +37,14 @@ const Album = () => {
     fetchDetailPlayplist()
   }, [pid])
 
+  useEffect(() => {
+    if(location.state?.playAlbum)
+    {
+      const randomSong = Math.round(Math.random() * playListData?.song?.items?.length) - 1
+      dispath(actions.setCurSongId(playListData?.song?.items[randomSong]?.encodeId))
+      dispath(actions.play(true))
+    }
+  } , [pid , playListData])
 
   return (
     <div className='flex relative gap-8 w-full h-full px-[59px] animate-scale-up-center'>

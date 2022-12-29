@@ -40,7 +40,7 @@ const Player = ({setIsShowRightSidebar}) => {
       if(res1.data.err === 0)
       {
         setSonginfo(res1.data.data)
-
+        dispath(actions.setCurSongData(res1.data.data))
       }
       if(res2.data.err === 0)
       {

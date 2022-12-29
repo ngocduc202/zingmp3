@@ -21,6 +21,7 @@ const Album = () => {
 
 
   useEffect(() =>{
+    dispath(actions.setCurAlbumId(pid))
     const fetchDetailPlayplist = async () =>{
       dispath(actions.loading(true))
       const response =await apis.apiGetDetaiPlaylist(pid)

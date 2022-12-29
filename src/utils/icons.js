@@ -7,6 +7,7 @@ import {BsSearch,BsThreeDots,BsFillPlayFill,BsPauseFill,BsMusicNoteBeamed,BsDot,
 import {CiRepeat,CiShuffle} from "react-icons/ci"
 import { TbRepeatOnce} from "react-icons/tb"
 import { SlVolumeOff , SlVolume2 , SlVolume1} from "react-icons/sl"
+import {ImBin} from "react-icons/im"
 
 
 const icons = {
@@ -34,7 +35,8 @@ const icons = {
   BsMusicNoteList,
   SlVolumeOff,
   SlVolume1,
-  SlVolume2
+  SlVolume2,
+  ImBin
 }
 
 export default icons

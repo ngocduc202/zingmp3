@@ -14,7 +14,7 @@ module.exports = {
           "main-500" : "#0E8080",
           "main-600" : "rgba(0,0,0.3)"
       },
-      backgroundColor:{
+      textColor:{
         "main-100" : "#E7ECEC",
         "main-200" : "#DDE4E4",
         "main-300" : "#CED9D9",

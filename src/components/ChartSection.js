@@ -115,9 +115,10 @@ const ChartSection = () => {
           <span className=' p-1 rounded-full bg-white'><BsFillPlayFill size={18} color="green" /></span>
           </Link>
           <div className='flex gap-4 h-full'>
-                <div className='flex-3 flex flex-col gap-4'>
+                <div className='flex-3 flex flex-col gap-4 '>
                   {rank?.filter((i ,index) => index <3)?.map((item ,index) =>(
                       <SongItem
+                      key={item.encodeId}
                       thumbnail={item.thumbnail}
                       title={item.title}
                       artists={item.artistsNames}
@@ -125,6 +126,7 @@ const ChartSection = () => {
                       order={index + 1}
                       percent={Math.round(+item.score * 100 /+chart?.totalScore)}
                       style = "text-white bg-[hsla(0,0%,100%,.07)] hover:bg-[#945EA7]"
+
                       />
                   ))}
                   <Link to={path.ZING_CHART} className="text-white px-4 py-2 rounded-l-full rounded-r-full border m-auto border-white w-fit" >Xem thêm</Link>

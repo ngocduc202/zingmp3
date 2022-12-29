@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Home = () =>{
   const {friday , newEveryday ,top100 , xone , newMusic ,weekChart ,favorriteArtist} = useSelector(state => state.app)
-  console.log(favorriteArtist);
+
 
   return (
     <div className="overflow-y-auto w-full ">

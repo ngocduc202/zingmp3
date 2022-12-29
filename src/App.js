@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector , useDispatch} from "react-redux";
-import {Home ,Login ,Public,Personal,Album,WeekRank} from './container/public/';
+import {Home ,Login ,Public,Personal,Album,WeekRank ,ZingChart} from './container/public/';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes , Route } from "react-router-dom";
@@ -29,6 +29,7 @@ function App() {
                   <Route path={path.ALBUM__TITLE__PID} element = {<Album/>} />
                   <Route path={path.PLAYLIST__TITLE__PID} element = {<Album/>} />
                   <Route path={path.WEEK__TITLE_PID} element = {<WeekRank/>} />
+                  <Route path={path.ZING_CHART} element = {<ZingChart/>} />
 
 
                   <Route path={path.STAR} element = {<Home/>} />

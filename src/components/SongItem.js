@@ -4,7 +4,7 @@ import 'moment/locale/vi'
 import { useDispatch } from 'react-redux'
 import * as actions from "../store/action"
 
-const SongItem = ({thumbnail , title , artists , releaseDate,sid , order ,percent}) => {
+const SongItem = ({thumbnail , title , artists , releaseDate,sid , order ,percent ,style}) => {
 
   const dispatch = useDispatch()
 
@@ -14,9 +14,9 @@ const SongItem = ({thumbnail , title , artists , releaseDate,sid , order ,percen
         dispatch(actions.setCurSongId(sid))
         dispatch(actions.play(true))
       }}
-      className={`w-full flex-auto flex justify-between items-center p-[10px] gap-[10px]  rounded-md cursor-pointer ${order ? "text-white bg-[hsla(0,0%,100%,.07)] hover:bg-[#945EA7]" : "text-black hover:bg-main-200"}`}>
+      className={`w-full flex-auto flex justify-between items-center p-[10px] gap-[10px]  rounded-md cursor-pointer ${style || "text-black hover:bg-main-200"}`}>
         <div className='flex gap-4 '>
-        {order && <span className={`${order === 1 ? "" : ""} text-white drop-shadow-md  text-[32px] m-auto`}>{order}</span>}
+        {order && <span className={`${order === 1 ? "text-shadow-no1" : order === 2 ? 'text-shadow-no2' : "text-shadow-no3"} text-[rgba(77,34,104,0.9)] text-[32px] m-auto`}>{order}</span>}
         <img src={thumbnail} alt="thumbnail" className='w-[60px] h-[60px] object-cover rounded-md' />
         <div className='flex flex-col '>
           <span className='text-sm font-semibold'>{title}</span>
@@ -24,7 +24,7 @@ const SongItem = ({thumbnail , title , artists , releaseDate,sid , order ,percen
           {releaseDate &&  <span className={`text-xs opacity-70`}>{moment(releaseDate * 1000).fromNow()}</span>}
         </div>
         </div>
-        {percent &&  <span>{`${percent}%`}</span>}
+        {percent &&  <span className='font-bold'>{`${percent}%`}</span>}
       </div>
   )
 }

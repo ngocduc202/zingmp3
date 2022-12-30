@@ -19,6 +19,7 @@ const List = ({songData}) => {
       dispath(actions.setCurSongId(songData?.encodeId))
       dispath(actions.play(true))
       dispath(actions.playAlbum(true))
+      dispath(actions.setRecent({thumbnail : songData?.thumbnail , title:songData?.title ,sid:songData?.encodeId , artists:songData?.artistsNames}))
     } }
     >
         <div className='flex items-center gap-3 flex-1'>

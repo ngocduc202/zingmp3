@@ -16,8 +16,6 @@ const Home = () =>{
         <NewRelease/>
         <Section data={top100} />
         <ChartSection />
-        <Section data={xone} />
-        <Section data={newMusic} />
         <div className="flex items-center px-[43px] w-full mt-12">
           {weekChart?.map(item =>(
             <Link to={item?.link?.split('.')[0]} key={item.link} className="flex-1 px-4">
@@ -25,6 +23,9 @@ const Home = () =>{
             </Link>
           ))}
         </div>
+        <Section data={xone} />
+        <Section data={newMusic} />
+
         {/* <div className="px-[59px] flex gap-4">
             <div className='flex items-center justify-between'>
                 <h3 className='text-[20px] font-bold'>{favorriteArtist?.title}</h3>

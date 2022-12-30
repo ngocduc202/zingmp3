@@ -13,6 +13,7 @@ const SongItem = ({thumbnail , title , artists , releaseDate,sid , order ,percen
       onClick={() => {
         dispatch(actions.setCurSongId(sid))
         dispatch(actions.play(true))
+        dispatch(actions.setRecent({thumbnail , title ,sid , artists}))
       }}
       className={`w-full flex-auto flex justify-between items-center p-[10px] gap-[10px]  rounded-md cursor-pointer ${style || "text-black hover:bg-main-200"}`}>
         <div className='flex gap-4 '>

@@ -37,6 +37,10 @@ export const setCurAlbumId = (pid) =>({
   pid
 })
 
+export const setRecent = (data) =>({
+  type : actionTypes.SET_RECENT,
+  data
+})
 
 // export const fetchDetailPlayplist = (pid) => async (dispath) =>{
 //   try {

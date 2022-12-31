@@ -42,6 +42,26 @@ export const setRecent = (data) =>({
   data
 })
 
+export const search = (keyword) => async (dispath) => {
+  try {
+    const response = await apis.apiSearch(keyword)
+    if(response.data.err === 0)
+    {
+      dispath({type : actionTypes.SEARCH , data : response.data.data})
+    }
+    else{
+      dispath({type : actionTypes.SEARCH,  data : null})
+    }
+
+  } catch (error) {
+    dispath({
+      type :  actionTypes.SEARCH,
+      data: null
+    })
+  }
+}
+
+
 // export const fetchDetailPlayplist = (pid) => async (dispath) =>{
 //   try {
 //     const response = await apis.apiGetDetaiPlaylist(pid)

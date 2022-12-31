@@ -1,18 +1,27 @@
-import React , {useState ,useEffect}from 'react'
+import React , {useState}from 'react'
 import icons from '../utils/icons'
-import { apiSearch } from '../apis'
+import * as actions from "../store/action"
+import { useDispatch } from 'react-redux'
+import { useNavigate, createSearchParams } from 'react-router-dom'
+import path from "../utils/path"
 
 const {BsSearch} = icons
 
 const Search = () => {
-
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [keyword, setKeyword] = useState("")
 
   const handleSearch= async (e) => {
     if(e.keyCode === 13)
     {
-      const response = await apiSearch(keyword)
-      console.log(response);
+      dispatch(actions.search(keyword))
+      navigate({
+        pathname : `/${path.SEARCH}/${path.ALL}`,
+        search : createSearchParams({
+          q: keyword
+        }).toString()
+      })
 
     }
   }

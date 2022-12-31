@@ -64,7 +64,7 @@ useEffect(() => {
                       title={item?.title}
                       artists={item?.artists}
                       sid={item?.sid}
-                      sm
+                      size="w-[40px] h-[40px]"
                     />
                   ))}
                 </div>}
@@ -77,7 +77,7 @@ useEffect(() => {
                   title={curSongData?.title}
                   artists={curSongData?.artistsNames}
                   sid={curSongData?.encodeId}
-                  sm
+                  size="w-[40px] h-[40px]"
                   style="bg-main-500 text-white"
                 />
                 <div className='flex flex-col text-black pt-[15px] px-2 pb-[5px]'>
@@ -97,7 +97,7 @@ useEffect(() => {
                       title={item?.title}
                       artists={item?.artistsNames}
                       sid={item?.encodeId}
-                      sm
+                      size="w-[40px] h-[40px]"
                     />
                   ))}
                 </div>}

@@ -50,7 +50,7 @@ const Sectionitem = ({link, title ,thumbnailM ,artistsNames,data , sortDescripti
                 <img ref={imageRef} src={thumbnailM} alt="avatar" className='w-full h-auto rounded-lg  ' />
                 </div>
                 <span className='flex flex-col'>
-                <span className='font-semibold '>{`${title?.slice(0,18)}...`}</span>
+                <span className='font-semibold '>{title?.length > 25 ? title.slice(0,25)+ "..." : title}</span>
                   {data?.sectionId === "h100" ? <span>{artistsNames} </span> :
                   <span>{sortDescription?.length >=40 ? `${sortDescription?.slice(0,30)}...` : sortDescription }</span>}
                 </span>

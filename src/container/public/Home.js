@@ -1,11 +1,19 @@
 import React , {useEffect} from "react";
-import { Slider ,Section,NewRelease,ChartSection } from "../../components";
+import { Slider ,Section,NewRelease,ChartSection ,Artist } from "../../components";
 import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
-
+import Sliders from "react-slick";
 
 const Home = () =>{
-  const {friday , newEveryday ,top100 , xone , newMusic ,weekChart ,favorriteArtist} = useSelector(state => state.app)
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 7
+  };
+
+  const {friday , newEveryday ,top100 , xone , newMusic ,weekChart ,favorriteArtist ,singer} = useSelector(state => state.app)
 
 
   return (
@@ -16,6 +24,20 @@ const Home = () =>{
         <NewRelease/>
         <Section data={top100} />
         <ChartSection />
+          {singer && <div className="px-[43px] w-full mt-12">
+          <Sliders {...settings}>
+          {singer?.map(item => (
+            <div key={item.id} className="px-4">
+              <Artist
+            image={item.thumbnail}
+            follower={item.totalFollow}
+            link={item.link}
+            title={item.name}
+            />
+            </div>
+          ))}
+          </Sliders>
+          </div>}
         <div className="flex items-center px-[43px] w-full mt-12">
           {weekChart?.map(item =>(
             <Link to={item?.link?.split('.')[0]} key={item.link} className="flex-1 px-4">

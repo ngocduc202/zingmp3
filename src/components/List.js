@@ -7,7 +7,7 @@ import * as actions from "../store/action"
 
 const {BsMusicNoteBeamed} =icons
 
-const List = ({songData , isHideAlbum}) => {
+const List = ({songData , isHideAlbum , isHideNode}) => {
 
   const dispath = useDispatch()
 
@@ -23,7 +23,7 @@ const List = ({songData , isHideAlbum}) => {
     } }
     >
         <div className='flex items-center gap-3 flex-1'>
-                  {!isHideAlbum && <span> <BsMusicNoteBeamed/></span>}
+                  {!isHideNode && <span> <BsMusicNoteBeamed/></span>}
                   <img src={songData?.thumbnail} alt="thumbnail" className='w-10 h-10 object-cover rounded-md' />
                   <span className='flex flex-col w-full'>
                       <span className='text-sm font-semibold '>{ songData?.title?.length >30 ? `${  songData?.title?.slice(0 ,25)}...` : songData?.title}</span>

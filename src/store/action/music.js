@@ -61,6 +61,26 @@ export const search = (keyword) => async (dispath) => {
   }
 }
 
+export const getSearchSongs = (singerId) => async (dispath) => {
+  try {
+    const response = await apis.apiGetArtistSongs(singerId)
+    if(response.data.err === 0)
+    {
+      dispath({type : actionTypes.PLAY_LIST , songs : response.data.data.items })
+    }
+    else{
+      dispath({type : actionTypes.PLAY_LIST,  songs : null})
+    }
+    // console.log(response);
+
+  } catch (error) {
+    dispath({
+      type :  actionTypes.PLAY_LIST,
+      data: null
+    })
+  }
+}
+
 
 // export const fetchDetailPlayplist = (pid) => async (dispath) =>{
 //   try {

@@ -84,9 +84,7 @@ const Album = () => {
                     <span className='text-gray-600 '>Lời tựa </span>
                     <span>{playListData?.sortDescription}</span>
               </span>
-
                 <Lists  totalDuration ={playListData?.song?.totalDuration}/>
-
           </div>
     </Scrollbars>
     </div>

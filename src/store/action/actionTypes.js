@@ -9,7 +9,7 @@ const actionTypes = {
   PLAY: "PLAY",
   SET_ALBUM : "SET_ALBUM",
   PLAY_LIST :"PLAY_LIST",
-  SEARCH : "SEARCH"
+  SEARCH : "SEARCH",
 }
 
 export default actionTypes

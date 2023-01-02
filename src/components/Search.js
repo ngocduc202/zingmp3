@@ -4,6 +4,7 @@ import * as actions from "../store/action"
 import { useDispatch } from 'react-redux'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import path from "../utils/path"
+import { GrClose } from 'react-icons/gr'
 
 const {BsSearch} = icons
 
@@ -27,7 +28,8 @@ const Search = () => {
   }
 
   return (
-    <div className='w-full flex items-center'>
+    <div className='w-full flex relative items-center'>
+      {keyword && <span onClick={() => setKeyword("")} className='absolute right-[16px] cursor-pointer'><GrClose /></span>}
         <span className='h-10 pl-4 bg-[#DDE4E4] flex items-center justify-center rounded-l-[20px] text-gray-500'>
           <BsSearch size={22} />
           </span>

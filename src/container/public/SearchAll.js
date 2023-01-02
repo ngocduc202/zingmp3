@@ -6,7 +6,6 @@ import {SongItem, List ,Sectionitem ,Artist} from "../../components"
 const SearchAll = () => {
 
   const {searchData} = useSelector(state => state.music)
-  console.log(searchData);
 
   return (
     <div className='w-full flex flex-col px-[60px] gap-[60px]'>
@@ -62,13 +61,14 @@ const SearchAll = () => {
         </div>
         <div className='flex flex-col w-full'>
               <h3 className='text-lg font-bold mb-5'>Nghệ sĩ</h3>
-              <div className='flex items-start justify-between gap-[28px]'>
+              <div className='flex  gap-[28px]'>
                       {searchData?.artists?.filter((i ,index) => index <=4)?.map((item) =>(
                         <Artist
                         key={item.id}
                         title={item.name}
                         image={item.thumbnailM}
                         follower={item.totalFollow}
+                        link={item.link}
                         />
                       ))}
               </div>

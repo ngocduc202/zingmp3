@@ -8,6 +8,7 @@ import {CiRepeat,CiShuffle} from "react-icons/ci"
 import { TbRepeatOnce} from "react-icons/tb"
 import { SlVolumeOff , SlVolume2 , SlVolume1} from "react-icons/sl"
 import {ImBin} from "react-icons/im"
+import {GrClose} from "react-icons/gr"
 
 
 const icons = {
@@ -37,7 +38,8 @@ const icons = {
   SlVolume1,
   SlVolume2,
   ImBin,
-  AiOutlineUserAdd
+  AiOutlineUserAdd,
+  GrClose
 }
 
 export default icons

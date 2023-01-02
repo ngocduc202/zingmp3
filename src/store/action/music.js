@@ -47,7 +47,7 @@ export const search = (keyword) => async (dispath) => {
     const response = await apis.apiSearch(keyword)
     if(response.data.err === 0)
     {
-      dispath({type : actionTypes.SEARCH , data : response.data.data})
+      dispath({type : actionTypes.SEARCH , data : response.data.data , keyword})
     }
     else{
       dispath({type : actionTypes.SEARCH,  data : null})

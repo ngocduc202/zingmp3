@@ -8,7 +8,8 @@ const initState ={
     songs : null ,
     curAlbumId : null,
     recentSongs :[] ,
-    searchData : {}
+    searchData : {},
+    keyword :""
 
 }
 
@@ -70,7 +71,8 @@ const musicReducer = (state = initState , action) =>{
           case  actionTypes.SEARCH:
             return{
               ...state,
-              searchData: action.data || {}
+              searchData: action.data || {},
+              keyword : action.keyword || ""
             }
           //[action.data, ...state.recentSongs] : state.recentSongs
           //songs.filter((i , index , self) => index !== self.length - 1)

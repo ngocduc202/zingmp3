@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import {Sectionitem} from "./"
 
 const Section = ({data , number}) => {
@@ -11,7 +10,7 @@ const Section = ({data , number}) => {
             <h3 className='text-[20px] font-bold pl-4'>{data?.title}</h3>
             <span className='text-xs'>TẤT CẢ</span>
           </div>
-          <div className='flex items-start justify-between '>
+          <div className='flex'>
               {data && data?.items?.length > 0 && data.items.filter((item ,index) => index <= 4 )?.map(item =>(
                   <Sectionitem
                   key={item.encodeId}

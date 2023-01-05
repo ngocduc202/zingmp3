@@ -13,7 +13,8 @@ const initState ={
     favorriteArtist : null ,
     chart :null ,
     rank :null,
-    singer: null
+    singer: null,
+    scrollTop : true
 
 }
 
@@ -40,6 +41,11 @@ const appReducer = (state = initState , action) =>{
           ...state ,
           isLoading : action.flag
         }
+        case actionTypes.ZERO_SCROLLTOP :
+          return {
+            ...state ,
+            scrollTop: action.flag
+          }
     default:
       return state;
   }

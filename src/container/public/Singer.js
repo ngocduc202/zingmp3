@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { apiGetArtist } from '../../apis'
 import icons from '../../utils/icons'
 import { SongItem,Section,Artist } from '../../components'
+import { useSelector } from 'react-redux'
 
 const {AiOutlineUserAdd , BsFillPlayFill} = icons
 
@@ -12,6 +13,8 @@ const Singer = () => {
   const [artistData, setArtistData] = useState(null)
   const [isHoverPlay, setIsHoverPlay] = useState(false)
   const ref = useRef()
+
+
   useEffect(() => {
     const fetchArtistData = async () => {
       const res = await apiGetArtist(singer)

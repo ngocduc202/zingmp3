@@ -9,6 +9,7 @@ const Public = () =>{
 
   const [isShowRightSidebar, setIsShowRightSidebar] = useState(true)
   const {isLoading, scrollTop} = useSelector(state => state.app)
+  const {curSongId} = useSelector(state => state.music)
   const dispatch = useDispatch()
   const handleScrollTop = (e) => {
           if(e.target.scrollTop  === 0) {
@@ -47,9 +48,9 @@ const Public = () =>{
           <SidebarRight />
           </div>}
         </div>
-        <div className="fixed z-50 bottom-0 right-0 left-0 h-[90px]">
+        {curSongId &&  <div className="fixed z-50 bottom-0 right-0 left-0 h-[90px]">
           <Player  setIsShowRightSidebar={setIsShowRightSidebar}/>
-        </div>
+        </div>}
 
     </div>
   )

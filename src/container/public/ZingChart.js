@@ -5,6 +5,7 @@ import { Line } from 'react-chartjs-2'
 import { Chart } from 'chart.js/auto'
 import { SongItem ,RankList} from '../../components'
 import _, { map } from 'lodash'
+import {SearchLoading} from "../../components"
 
 const ZingChart = () => {
 
@@ -117,7 +118,9 @@ const ZingChart = () => {
 
 
   return (
-    <div className=''>
+  <>
+  {chartData ?
+  <div className=''>
         <div className='flex flex-col'>
             <div className='relative'>
               <img src={bgChart} alt="chart" className='w-full h-[500px] object-cover grayscale' />
@@ -169,6 +172,12 @@ const ZingChart = () => {
               </div>
         </div>
     </div>
+    :
+    <div className="w-full h-full flex items-center justify-center">
+      <SearchLoading />
+    </div>
+}
+  </>
   )
 }
 

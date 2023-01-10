@@ -3,6 +3,7 @@ import { Slider ,Section,NewRelease,ChartSection ,Artist } from "../../component
 import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import Sliders from "react-slick";
+import {Loading} from "../../components"
 
 const Home = () =>{
   const settings = {
@@ -17,7 +18,9 @@ const Home = () =>{
 
 
   return (
-    <div className="overflow-y-auto w-full ">
+  <>
+  { (friday && newEveryday &&top100 && xone && newMusic &&weekChart &&singer)
+    ?  <div className="overflow-y-auto w-full ">
           <div className="w-full h-[70px]"></div>
         <Slider />
         <Section data={friday} />
@@ -57,6 +60,11 @@ const Home = () =>{
         </div> */}
         <div className="w-full h-[500px]"></div>
     </div>
+    :
+    <div className="w-full h-full flex items-center justify-center">
+      <Loading />
+      </div>}
+  </>
   )
 }
 

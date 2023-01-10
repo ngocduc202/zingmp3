@@ -113,8 +113,7 @@ const ZingChart = () => {
     }
 
   } , [chartData])
-
-
+  console.log(chartData);
 
 
   return (
@@ -161,6 +160,7 @@ const ZingChart = () => {
                             data={item[1]?.items}
                             isHideAlbum={true}
                             number={5}
+                            link={item[1]?.link}
                             />
                         </div>
                     </div>
@@ -168,7 +168,6 @@ const ZingChart = () => {
                 </div>
               </div>
         </div>
-        <div className='w-full h-[500px]'></div>
     </div>
   )
 }

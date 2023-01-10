@@ -63,7 +63,7 @@ useEffect(() => {
       </div>
       </div>
       <div className='mt-[30px] px-[60px] w-full flex '>
-            <div className='w-[40%] flex-auto '>
+            {/* <div className='w-[40%] flex-auto '>
               <h3 className='mb-5 font-bold text-[20px]'>Mới nhất</h3>
                 <div className='flex gap-4  p-4 pr-11 bg-gray-300 rounded-md '>
                 <img src={artistData?.topAlbum?.thumbnail} alt="thumbnail"  className='w-[151px] h-[151px] object-cover rounded-md'/>
@@ -76,13 +76,13 @@ useEffect(() => {
                     <span>{artistData?.topAlbum?.releaseDate}</span>
                 </div>
                 </div>
-            </div>
-            <div className='w-[60%] flex-auto pl-6 '>
+            </div> */}
+            <div className='w-full flex-auto pl-1 '>
             <h3 className='mb-5 font-bold text-[20px]'>Bài hát nổi bật</h3>
             <div className='flex flex-wrap w-full justify-start  '>
                 {artistData?.sections?.find((item) =>item.sectionType === "song")?.items?.filter((item , index) => index <6)?.map(item => (
                   <div  key={item.encodeId} className='w-[90%] min-[1024px]:w-[50%] '>
-                    <div className='w-[96%] border-b border-gray-400'>
+                    <div className='w-[96%] border-b border-[rgba(0,0,0,0.05)]'>
                     <SongItem
                     thumbnail={item.thumbnail}
                     title={item.title}

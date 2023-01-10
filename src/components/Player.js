@@ -22,9 +22,11 @@ const Player = ({setIsShowRightSidebar}) => {
   const [repeatMode, setRepeatMode] = useState(0)
   const [isLoadedSource, setIsLoadedSource] = useState(true)
   const [volume, setVolume] = useState(100)
+  const [isHoverVolume, setIsHoverVolume] = useState(false)
   const [audio, setAudio] = useState(new Audio())
   const thumRef = useRef()
   const trackRef = useRef()
+  const volumeRef = useRef()
 
 
   // console.log(audioEl);
@@ -104,6 +106,13 @@ const Player = ({setIsShowRightSidebar}) => {
   useEffect(() => {
     audio.volume = volume / 100
   }, [volume])
+
+  useEffect(() => {
+    if(volumeRef.current){
+      volumeRef.current.style.cssText = `right:${100 - volume}%`
+    }
+  }, [volume])
+
 
   const handleTogglePlayMusic = () =>{
     if(isPlaying)
@@ -234,18 +243,25 @@ const Player = ({setIsShowRightSidebar}) => {
                 <span>{moment.utc(songInfo?.duration * 1000).format("mm:ss")}</span>
               </div>
           </div>
-          <div className='w-[30%] flex-auto flex items-center justify-end gap-4'>
+          <div className='w-[30%] hidden flex-auto min-[840px]:flex items-center justify-end gap-4'>
 
-            <div className='flex gap-2 items-center'>
+            <div
+            onMouseEnter={() =>  setIsHoverVolume( true)}
+            onMouseLeave={() =>  setIsHoverVolume( false)}
+            className='flex gap-2 items-center'>
               <span onClick={() => setVolume(prev => +prev === 0 ? 70 : 0)}>{+volume >= 50  ? <SlVolume2/> : +volume === 0 ? <SlVolumeOff/> : <SlVolume1/>}</span>
-            <input
-                type="range"
-                step={1}
-                min={0}
-                max={100}
-                value={volume}
-                onChange={(e) => setVolume(e.target.value)}
-                />
+            <div className={`w-[130px] h-1 bg-white rounded-l-full rounded-r-full ${isHoverVolume ? "hidden" : "relative"}`}>
+                <div ref={volumeRef} className='absolute left-0 bottom-0 top-0 bg-main-500 rounded-l-full rounded-r-full'></div>
+              </div>
+              <input
+              type="range"
+              step={1}
+              min={0}
+              max={100}
+              value={volume}
+              onChange={(e) => setVolume(e.target.value)}
+              className={`w-[130px] ${isHoverVolume ? "inline" : "hidden"}`}
+              />
             </div>
               <span
                 className='p-1 rounded-sm cursor-pointer bg-main-500 opacity-90 hover:opacity-100'

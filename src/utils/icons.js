@@ -1,4 +1,4 @@
-import {MdOutlineLibraryMusic , MdOutlineFeed,MdSkipNext ,MdSkipPrevious} from 'react-icons/md'
+import {MdOutlineLibraryMusic , MdOutlineFeed,MdSkipNext ,MdSkipPrevious , MdArrowBackIosNew, MdArrowForwardIos} from 'react-icons/md'
 import {FiDisc} from 'react-icons/fi'
 import {CgDisc} from 'react-icons/cg'
 import {AiOutlineArrowLeft ,AiOutlineArrowRight,AiFillHeart,AiOutlineHeart,AiOutlineUserAdd} from 'react-icons/ai'
@@ -39,7 +39,9 @@ const icons = {
   SlVolume2,
   ImBin,
   AiOutlineUserAdd,
-  GrClose
+  GrClose,
+  MdArrowBackIosNew,
+  MdArrowForwardIos
 }
 
 export default icons

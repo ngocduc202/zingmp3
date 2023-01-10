@@ -48,6 +48,8 @@ const Album = () => {
   } , [pid , playListData])
 
   return (
+    <>
+        <div className='w-full h-[90px]'></div>
     <div className='flex relative gap-8 w-full h-full px-[59px] animate-scale-up-center'>
           <div className='flex-none w-1/4 flex flex-col items-center gap-2'>
               <div className='w-full relative overflow-hidden'>
@@ -88,6 +90,7 @@ const Album = () => {
           </div>
     </Scrollbars>
     </div>
+    </>
   )
 }
 

@@ -14,7 +14,8 @@ const initState ={
     chart :null ,
     rank :null,
     singer: null,
-    scrollTop : true
+    scrollTop : true,
+    currentWidth : null
 
 }
 
@@ -46,6 +47,11 @@ const appReducer = (state = initState , action) =>{
             ...state ,
             scrollTop: action.flag
           }
+          case actionTypes.CURRENT_WIDTH :
+            return {
+              ...state ,
+              currentWidth: action.w
+            }
     default:
       return state;
   }

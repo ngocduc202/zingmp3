@@ -1,9 +1,9 @@
 import React from 'react'
 import icons from '../utils/icons'
-import {Search} from './'
+import {Search ,SettingItem} from './'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const {HiArrowNarrowLeft , HiArrowNarrowRight} = icons
+const {HiArrowNarrowLeft , HiArrowNarrowRight ,FaAffiliatetheme , RiVipFill ,FiSettings ,FaUser} = icons
 
 const Header = () => {
   const {singer} = useParams()
@@ -19,8 +19,19 @@ const Header = () => {
                   <Search />
               </div>
         </div>
-        <div>
-          Login
+        <div className='flex w-[24%] items-center justify-center mt-0 mr-[-20px]'>
+          <SettingItem
+          link={<FaAffiliatetheme size={20} />}
+          />
+          <SettingItem
+          link={<RiVipFill size={20} />}
+          />
+          <SettingItem
+          link={<FiSettings size={20}/>}
+          />
+          <SettingItem
+          link={<FaUser size={20} />}
+          />
         </div>
     </div>
   )

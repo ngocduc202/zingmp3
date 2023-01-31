@@ -15,6 +15,8 @@ function App() {
   const dispatch = useDispatch()
   const [weekChart, setWeekChart] = useState(null)
 
+  const [currentWidth, setCurrentWidth] = useState(window.innerWidth)
+
   useEffect(() => {
     dispatch(actions.getHome())
 
@@ -25,6 +27,21 @@ function App() {
     fetchChartData()
 
   } ,[])
+
+  const setWidth = (e) => {
+    setCurrentWidth(e.target.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize' ,setWidth)
+    return () =>{
+      window.removeEventListener('resize' , setWidth)
+    }
+  }, [])
+
+  useEffect(() => {
+  dispatch(actions.setCurrentWidth(currentWidth))
+  }, [currentWidth])
 
   return (
     <>

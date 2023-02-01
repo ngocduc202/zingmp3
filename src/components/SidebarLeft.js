@@ -4,6 +4,7 @@ import { siderbarMenu } from "../utils/menu";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import path from "../utils/path";
+import {LoginNav} from "./"
 
 
 const notActiveStyle ="py-2 px-[25px] text-[#32323D] text-[13px] font-bold flex gap-[12px] items-center "
@@ -38,6 +39,18 @@ const SidebarLeft  = ()=>{
                 </NavLink>
               ))}
           </div>
+
+                <LoginNav
+                title={"Đăng nhập để khám phá playlist dành riêng cho bạn"}
+                text={"ĐĂNG NHẬP"}
+                />
+                <LoginNav
+                title={"Nghe nhạc không quảng cáo cùng kho nhạc VIP"}
+                text={"Nâng cấp VIP"}
+                style
+                bg
+                textcolor
+                />
 
     </div>
   )

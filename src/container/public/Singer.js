@@ -4,6 +4,7 @@ import { apiGetArtist } from '../../apis'
 import icons from '../../utils/icons'
 import { SongItem,Section,Artist } from '../../components'
 import { useSelector } from 'react-redux'
+import { SearchLoading } from '../../components'
 
 const {AiOutlineUserAdd , BsFillPlayFill} = icons
 
@@ -27,12 +28,14 @@ const Singer = () => {
   }, [singer])
 
 useEffect(() => {
-    ref.current.scrollIntoView({behavior : "smooth" , block : "end" , inline : "nearest"})
+    ref.current?.scrollIntoView({behavior : "smooth" , block : "end" , inline : "nearest"})
 },[singer])
 
-
   return (
-    <div className='flex flex-col w-full '>
+    <>
+    {
+      artistData ?
+      <div className='flex flex-col w-full '>
       <div ref={ref} className='relative'>
       <img src={artistData?.cover} alt="background"  className='h-[400px] object-cover w-full'/>
       <div className='absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-transparent px-[60px] text-white'>
@@ -129,6 +132,12 @@ useEffect(() => {
       <div className='w-full h-[500px]'></div>
 
     </div>
+    :
+    <div className="w-full h-full flex items-center justify-center">
+    <SearchLoading />
+    </div>
+    }
+    </>
   )
 }
 

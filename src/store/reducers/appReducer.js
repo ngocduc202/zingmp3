@@ -15,7 +15,8 @@ const initState ={
     rank :null,
     singer: null,
     scrollTop : true,
-    currentWidth : null
+    currentWidth : null,
+    hArtistTheme : null
 
 }
 
@@ -29,6 +30,7 @@ const appReducer = (state = initState , action) =>{
         newEveryday : action.homeData?.find(item => item.sectionId === "hAutoTheme2")  || null ,
         top100 : action.homeData?.find(item => item.sectionId === "h100")  || null ,
         xone : action.homeData?.find(item => item.sectionId === "hXone")  || null ,
+        hArtistTheme : action.homeData?.find(item => item.sectionId === "hArtistTheme")  || null ,
         newMusic : {...action.homeData?.find(item => item.sectionId === "hAlbum"), title: "Nhạc mới"}  || null ,
         newRelease : action.homeData?.find(item => item.sectionType === "new-release") || null ,
         weekChart : action.homeData?.find(item => item.sectionType === "weekChart")?.items || null ,

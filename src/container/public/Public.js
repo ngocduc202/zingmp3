@@ -40,7 +40,7 @@ const Public = () =>{
               autoHide
               style={{ width: "100%", height: "100%" }}>
                   <Outlet />
-                  <div className="h-[120px] w-full"></div>
+                  {/* <div className="h-[120px] w-full"></div> */}
               </Scrollbars>
               </div>
             </div>

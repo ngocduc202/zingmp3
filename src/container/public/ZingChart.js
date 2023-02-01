@@ -114,7 +114,7 @@ const ZingChart = () => {
     }
 
   } , [chartData])
-  console.log(chartData);
+
 
 
   return (

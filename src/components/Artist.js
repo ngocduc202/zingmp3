@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 
 const {AiOutlineUserAdd} =icons
 
-const Artist = ({image , title ,follower,link}) => {
+const Artist = ({image , title ,follower,link,sm}) => {
 
   const [ishover, setIshover] = useState(false)
 
   return (
-    <div className='w-full flex flex-col gap-[15px]'>
+    <div className={`${sm ? "w-1/5" : "w-full"} flex flex-col gap-[15px]`}>
       <Link
       className='relative overflow-hidden rounded-full cursor-pointer'
       onMouseEnter={() =>setIshover(true)}

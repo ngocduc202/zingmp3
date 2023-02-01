@@ -14,12 +14,12 @@ const Home = () =>{
     slidesToScroll: 7
   };
 
-  const {friday , newEveryday ,top100 , xone , newMusic ,weekChart ,favorriteArtist ,singer} = useSelector(state => state.app)
+  const {friday , newEveryday ,top100 , xone , newMusic ,weekChart ,hArtistTheme ,singer} = useSelector(state => state.app)
 
 
   return (
   <>
-  { (friday && newEveryday &&top100 && xone && newMusic &&weekChart &&singer)
+  { (friday && newEveryday &&top100 && newMusic &&weekChart &&singer)
     ?  <div className="overflow-y-auto w-full ">
           <div className="w-full h-[70px]"></div>
         <Slider />
@@ -49,7 +49,7 @@ const Home = () =>{
             </Link>
           ))}
         </div>
-        <Section data={xone} />
+        <Section data={hArtistTheme} />
         <Section data={newMusic} />
 
         {/* <div className="px-[59px] flex gap-4">
@@ -58,7 +58,7 @@ const Home = () =>{
                 <span className='text-xs'>TẤT CẢ</span>
               </div>
         </div> */}
-        <div className="w-full h-[500px]"></div>
+        <div className="w-full h-[100px]"></div>
     </div>
     :
     <div className="w-full h-full flex items-center justify-center">

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import path from "../utils/path";
 import {LoginNav} from "./"
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 
 const notActiveStyle ="py-2 px-[25px] text-[#32323D] text-[13px] font-bold flex gap-[12px] items-center "
@@ -40,7 +41,8 @@ const SidebarLeft  = ()=>{
               ))}
           </div>
 
-                <LoginNav
+              <Scrollbars autoHide style={{ width: "100%", height: "100%" }} >
+              <LoginNav
                 title={"Đăng nhập để khám phá playlist dành riêng cho bạn"}
                 text={"ĐĂNG NHẬP"}
                 />
@@ -51,6 +53,8 @@ const SidebarLeft  = ()=>{
                 bg
                 textcolor
                 />
+                <div className="h-[100px]"></div>
+              </Scrollbars>
 
     </div>
   )

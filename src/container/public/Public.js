@@ -1,5 +1,5 @@
 import React ,{useState}from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { SidebarLeft , SidebarRight,Player ,Header ,Loading} from "../../components";
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { useSelector,useDispatch } from "react-redux";
@@ -40,11 +40,11 @@ const Public = () =>{
               autoHide
               style={{ width: "100%", height: "100%" }}>
                   <Outlet />
-                  {/* <div className="h-[120px] w-full"></div> */}
+                  <div className="h-[80px] w-full"></div>
               </Scrollbars>
               </div>
             </div>
-          {isShowRightSidebar &&  <div className="w-[300px]  hidden 1600:flex flex-none h-screen  animate-slide-left absolute top-0 right-0 bottom-0 z-50 bg-main-300">
+          {isShowRightSidebar &&  <div className="w-[300px]  hidden min-[1024px]:flex flex-none h-screen  animate-slide-left absolute top-0 right-0 bottom-0 z-50 bg-main-300">
           <SidebarRight />
           </div>}
         </div>
